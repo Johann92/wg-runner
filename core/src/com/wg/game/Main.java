@@ -2,6 +2,7 @@ package com.wg.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -10,6 +11,7 @@ public class Main extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture img;
 	Player player;
+
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
@@ -19,6 +21,7 @@ public class Main extends ApplicationAdapter {
 	}
 
 	public void update(float deltaTime){
+		handleDebugInput();
 	    player.update(deltaTime);
 
     }
@@ -40,5 +43,15 @@ public class Main extends ApplicationAdapter {
 	public void dispose () {
 		batch.dispose();
 		img.dispose();
+	}
+
+	public void handleDebugInput(){
+
+		// restart the game
+		if(Gdx.input.isKeyJustPressed(Input.Keys.F1)){
+			dispose();
+			create();
+		}
+
 	}
 }
