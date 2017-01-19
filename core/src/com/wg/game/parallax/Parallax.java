@@ -35,21 +35,15 @@ public class Parallax {
         }
 
         public Layer(float dx, float dy) {
-
-            this.dx = dx;
-            this.dy = dy;
-            texture = new Texture("badlogic.jpg");
-
+            this(0,0,dx,dy);
         }
 
         public Layer(float offsetX, float offsetY, float dx, float dy) {
-
             this.offsetX = offsetX;
             this.offsetY = offsetY;
-
             this.dx = dx;
             this.dy = dy;
-            texture = new Texture("badlogic.jpg");
+            texture = new Texture("silhouette_1.png");
 
         }
 
@@ -63,7 +57,6 @@ public class Parallax {
     public void draw(SpriteBatch batch) {
         for (int i = 0; i < layers.size; i++) {
             Layer l = layers.get(i);
-
             batch.draw(l.texture, l.x + l.offsetX, l.y + l.offsetY);
         }
     }
