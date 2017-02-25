@@ -86,6 +86,9 @@ public class Parallax {
 
                 l.x = player.getX() + Gdx.graphics.getWidth() + MathUtils.random(20, 150);
                 l.y = MathUtils.random(50, 180);
+
+
+
             }
         }
 
