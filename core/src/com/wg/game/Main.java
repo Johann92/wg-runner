@@ -62,7 +62,7 @@ public class Main extends ApplicationAdapter {
         handleDebugInput();
 
         player.update(delta);
-        background.update(player);
+        background.update(delta,player);
 
         camera.position.set(camera.viewportWidth/2 + player.getX() - camera.viewportWidth/6,camera.viewportHeight/2,0);
         camera.update();
