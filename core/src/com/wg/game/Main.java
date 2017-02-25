@@ -51,6 +51,8 @@ public class Main extends ApplicationAdapter {
 
         }
 
+        // implement collision detection
+
     }
 
     /**
