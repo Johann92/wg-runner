@@ -19,9 +19,9 @@ public class Parallax {
 
         layers = new Array<Layer>();
         layers.addAll(
-                new Layer(0,100,0.9f, 0.9f),
-                new Layer(0,50,0.7f, 0.9f),
-                new Layer(0,0,0.5f, 0.9f)
+                new Layer(0,100,0.9f, 0),
+                new Layer(0,50,0.7f, 0),
+                new Layer(0,0,0.5f, 0)
         );
 
     }

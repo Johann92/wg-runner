@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.utils.Array;
 import com.sun.javafx.geom.AreaOp;
 import com.wg.game.parallax.Parallax;
 
@@ -17,6 +19,8 @@ public class Main extends ApplicationAdapter {
     Texture img;
     Player player;
     Parallax background;
+
+    Array<Obstacle> obstacles;
 
     @Override
     public void create() {
@@ -30,6 +34,23 @@ public class Main extends ApplicationAdapter {
         img = new Texture("badlogic.jpg");
         player = new Player();
         background = new Parallax();
+
+        // create
+        obstacles = new Array<Obstacle>();
+
+        float previousX = Gdx.graphics.getWidth();
+        for (int i = 0; i < 20; i++) {
+            float x = previousX + MathUtils.random(280, 500);
+            float y = 0;
+            float width = MathUtils.random(20, 40);
+            float height = MathUtils.random(20, 70);
+
+            obstacles.add(new Obstacle(x,y,width,height));
+
+            previousX = x + width;
+
+        }
+
     }
 
     /**
@@ -43,7 +64,7 @@ public class Main extends ApplicationAdapter {
         player.update(delta);
         background.update(player);
 
-        camera.position.set(camera.viewportWidth/2 + player.getX(),camera.viewportHeight/2,0);
+        camera.position.set(camera.viewportWidth/2 + player.getX() - camera.viewportWidth/6,camera.viewportHeight/2,0);
         camera.update();
 
     }
@@ -65,6 +86,12 @@ public class Main extends ApplicationAdapter {
 
         background.draw(batch);
         player.draw(batch);
+
+        // render all obstacles
+        for (int i = 0; i < obstacles.size; i++) {
+            Obstacle o = obstacles.get(i);
+            o.draw(batch);
+        }
 
         batch.end();
     }

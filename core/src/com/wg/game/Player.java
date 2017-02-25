@@ -15,10 +15,11 @@ public class Player {
     private float x;
     private float y;
     private float acceleration = 1.02f;
-    private float velocityX = 60;
+    private float velocityX = 300;
     private float velocityY = 0;
     private float accelerationY = 9.81f;
-    private float gravity = -9.81f;
+    private float gravity = -20f;
+    private final float yMax = 150;
 
     Texture pixel;
 
@@ -38,16 +39,23 @@ public class Player {
         x += velocityX * deltaTime;
         y += velocityY * deltaTime;
 
-        if (Gdx.input.isKeyPressed(Input.Keys.SPACE)) {
-            System.out.println("up");
-            velocityY = 60;
+        if(Gdx.input.isKeyPressed(Input.Keys.SPACE) && y == 0){
+            velocityY = 500;
+        }
+
+        else if (Gdx.input.isKeyPressed(Input.Keys.SPACE) && y < yMax && velocityY >= 0) {
+//            System.out.println("up");
+            velocityY += 12;
         }
 
         velocityY += gravity;
 
-        if (y <= 0) {
+        if (y < 0) {
             y = 0;
+            velocityY = 0;
         }
+
+        System.out.println(velocityY);
     }
 
     public float getX() {
